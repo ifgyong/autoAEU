@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #xcodebuild archive -project 'test.xcodeproj' -configuration 'Debug' -scheme 'BLTSZY' -archivePath './app.xcarchive' LIBRARY_SEARCH_PATHS="./Pods/../build/**  ./BLTSZY/**"
-proName='xiaoqu-ios'
-proURL="/Users/Jerry/Desktop/ios_afu/xiaoqu-ios"
-api_key='2e8571d626b9a8c8b752e59624481847'
-configuration='Debug' #Release
+proName='your project name'
+proURL="your project path"#like /Users/Jerry/Desktop/ios_afu
+api_key=''#pgyer api_key
+configuration='Debug' #Release 
 #打包
 arch(){
     echo '开始编译Pods'

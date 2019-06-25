@@ -4,7 +4,15 @@
 proName='your project name'
 proURL="your project path"#like /Users/Jerry/Desktop/ios_afu
 api_key=''#pgyer api_key
-configuration='Debug' #Release 
+configuration='Debug' #Release
+
+autoPlus(){
+path=${proURL}/${proName}/${proName}/Info.plist
+number=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${path}")
+BundleVersion=$(( $number + 1 ))
+/usr/libexec/PlistBuddy -c "Set CFBundleVersion $BundleVersion" "${path}"
+}
+
 #打包
 arch(){
     echo '开始编译Pods'
@@ -12,6 +20,8 @@ arch(){
     echo '开始编译project'
 
 xcodebuild -archivePath "./build/${proName}.xcarchive" -workspace $proName.xcworkspace -sdk iphoneos -scheme $proName -configuration $configuration archive
+
+    autoPlus
 }
 #导出ipa
 exportIPA(){

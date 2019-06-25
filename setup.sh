@@ -69,29 +69,23 @@ startUPLoadIPA(){
 }
 
 
-if (($# == 0))
-#then
-#    startarch
-#elif (($# == 1))
-then
-        while :
-        do
-        echo '🍺🍺🍺***********************🍺🍺🍺'
-        echo  "输入 1 到 4 之间的数字:"
-        echo  "输入 1:从编译打包开始至结束"
-        echo  "输入 2:从导出IPA开始至结束"
-        echo  "输入 3:从上传ipa开始至结束"
-        echo  "输入 4:退出"
-        read a
-        case $a in
-            1)startarch
-            break;;
-            2)startExportIPA
-            break;;
-            3)startUPLoadIPA
-            break;;
-            4) break;;
-        esac
-        done
-fi
+while :
+do
+echo '🍺🍺🍺***********************🍺🍺🍺'
+echo  "输入 1 到 4 之间的数字:"
+echo  "输入 1:从编译打包开始至结束"
+echo  "输入 2:从导出IPA开始至结束"
+echo  "输入 3:从上传ipa开始至结束"
+echo  "输入 4:退出"
+read a
+case $a in
+    1)startarch
+    break;;
+    2)startExportIPA
+    break;;
+    3)startUPLoadIPA
+    break;;
+    4) break;;
+esac
+done
 

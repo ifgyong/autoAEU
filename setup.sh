@@ -76,7 +76,8 @@ echo  "输入 1 到 4 之间的数字:"
 echo  "输入 1:从编译打包开始至结束"
 echo  "输入 2:从导出IPA开始至结束"
 echo  "输入 3:从上传ipa开始至结束"
-echo  "输入 4:退出"
+echo  "输入 4:删除cache and ipa"
+echo  "输入 5:退出"
 read a
 case $a in
     1)startarch
@@ -85,7 +86,10 @@ case $a in
     break;;
     3)startUPLoadIPA
     break;;
-    4) break;;
+    4)rm -rf ./app
+    rm -rf ./build
+    break;;
+    5) break;;
 esac
 done
 

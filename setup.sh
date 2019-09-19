@@ -5,6 +5,8 @@ proName='your project name'
 proURL="your project path"#like /Users/Jerry/Desktop/ios_afu
 api_key=''#pgyer api_key
 configuration='Debug' #Release
+msg=''
+msg2=''
 
 autoPlus(){
 path=${proURL}/${proName}/${proName}/Info.plist
@@ -15,6 +17,7 @@ BundleVersion=$(( $number + 1 ))
 
 #打包
 arch(){
+starttime=`date +%s`
     echo '开始编译Pods'
     xcodebuild -project Pods/Pods.xcodeproj build
     echo '开始编译project'
@@ -22,18 +25,33 @@ arch(){
 xcodebuild -archivePath "./build/${proName}.xcarchive" -workspace $proName.xcworkspace -sdk iphoneos -scheme $proName -configuration $configuration archive
 
     autoPlus
+endtime=`date +%s`
+echo ""
+msg="打包时间： $((endtime-starttime))s"
+echo ""
 }
 #导出ipa
 exportIPA(){
+starttime=`date +%s`
     echo '开始导出ipa'
     xcodebuild -exportArchive -archivePath "./build/${proName}.xcarchive" -exportPath './app' -exportOptionsPlist './ExportOptions.plist'
+echo ""
+msg2="导出时间： $((endtime-starttime))s"
+echo ""
 }
 #上传ipa到蒲公英
 upload(){
 if [ -e "${proURL}/app/${proName}.ipa" ]
 then
+starttime=`date +%s`
     echo '开始上传ipa/apk到蒲公英'
     curl -F "file=@${proURL}/app/${proName}.ipa" -F "_api_key=${api_key}" 'http://www.pgyer.com/apiv2/app/upload'
+endtime=`date +%s`
+echo ""
+echo $msg
+echo $msg2
+echo "上传时间： $((endtime-starttime))s"
+echo ""
 else
     echo "在目录：${proURL}/app/${proName}.ipa 不存在"
 fi

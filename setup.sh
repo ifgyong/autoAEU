@@ -9,10 +9,12 @@ msg=''
 msg2=''
 
 autoPlus(){
-path=${proURL}/${proName}/${proName}/Info.plist
-number=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${path}")
-BundleVersion=$(( $number + 1 ))
-/usr/libexec/PlistBuddy -c "Set CFBundleVersion $BundleVersion" "${path}"
+#path=${proURL}/${proName}/${proName}/Info.plist
+#number=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${path}")
+#BundleVersion=$(( $number + 1 ))
+#/usr/libexec/PlistBuddy -c "Set CFBundleVersion $BundleVersion" "${path}"
+agvtool next-version -all
+
 }
 
 #打包
